@@ -54,11 +54,11 @@ const Navbar = () => {
         </div>
       </div>
       <div className="diag__navbar-sign">
-        <Link to="/signIN" target="_blank">
+        <Link to="/signUP" target="_blank">
           <p>Sign UP</p>
         </Link>
 
-        <Link to="/signUP">
+        <Link to="/signIN">
           <button type="button">Sign IN</button>
         </Link>
       </div>
