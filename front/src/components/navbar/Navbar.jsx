@@ -39,9 +39,10 @@ const Navbar = () => {
           <p>
             <Link to="/">Home</Link>
           </p>
-          <p>
-            <Link to="/about">About US</Link>
-          </p>
+          <a href="/possibility">
+            <p>About US</p>
+          </a>
+
           <p>
             <Link to="/blogs">Blogs</Link>
           </p>

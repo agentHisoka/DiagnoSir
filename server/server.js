@@ -44,11 +44,11 @@ app.get("/dashboard", varifyUser, (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, address } = req.body;
   bcrypt
     .hash(password, 10)
     .then((hash) => {
-      UserModel.create({ name, email, password: hash })
+      UserModel.create({ name, email, password: hash, address })
         .then((user) => res.json("Success"))
         .catch((err) => res.json(err));
     })
@@ -132,6 +132,19 @@ app.post("/reset-password/:id/:token", (req, res) => {
   });
 });
 
-app.listen(3001, () => {
+app.post("/getDiagnosis",(req,res)=>{
+   const symptoms = req.body.symptoms;
+
+   // In a real application, you might perform diagnosis logic here
+   // For this example, just send back the received data
+   res.json({ message: "Received symptoms data", symptoms: symptoms });
+})
+
+app.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  return res.json({ Status: "Succes" });
+});
+
+app.listen(3001, () =>   {
   console.log("Server is Running");
 });

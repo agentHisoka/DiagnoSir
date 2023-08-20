@@ -21,13 +21,17 @@ import ResetPassword from "./pages/YoussafREG/ResetPassword";
 import HomeDash from "./containers/dashboard/HomeDash";
 import Mydash from "./pages/Mydash";
 import LandingPage from "./containers/LandingPage";
-import Dashy from "./scenes/global/Dashy";
 import Team from "./scenes/global/Team";
 import Invoices from "./scenes/global/Invoices";
 import Contacts from "./scenes/global/Contacts";
 import Form from "./scenes/global/Form";
 import FAQ from "./scenes/global/Faq";
 import HomeDashy from "./scenes/dashboard";
+import PredictPage from "./pages/predictionPage/PredictPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import RequireAuth from "./components/RequireAuth";
+import Dashy from "./scenes/global/Dashy";
+import Layout from "./components/Layout";
 
 const App = () => {
   return (
@@ -57,24 +61,28 @@ const App = () => {
 
     <main className="App">
       <Routes>
-        <Route exact path="/" element={<LandingPage />} />
+        <Route path="/" element={<Layout />}>
+          <Route exact path="/" element={<LandingPage />} />
 
-        <Route path="/dashboard" element={<Dashy />}>
-          <Route path="/dashboard/main" element={<HomeDashy />} />
-          <Route path="/dashboard/team" element={<Team />} />
-          <Route path="/dashboard/invoices" element={<Invoices />} />
-          <Route path="/dashboard/contacts" element={<Contacts />} />
-          <Route path="/dashboard/form" element={<Form />} />
-          <Route path="/dashboard/faq" element={<FAQ />} />
+          <Route exact path="/signUP" element={<Register />} />
+          <Route exact path="/signIN" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+          <Route
+            path="/reset_password/:id/:token"
+            element={<ResetPassword />}
+          ></Route>
+          <Route element={<RequireAuth />}>
+            <Route path="/dashboard/" element={<Dashy />}>
+              <Route path="/dashboard/main" element={<HomeDashy />} />
+              <Route path="/dashboard/team" element={<Team />} />
+              <Route path="/dashboard/getPredict" element={<PredictPage />} />
+              <Route path="/dashboard/invoices" element={<Invoices />} />
+              <Route path="/dashboard/contacts" element={<Contacts />} />
+              <Route path="/dashboard/form" element={<Form />} />
+              <Route path="/dashboard/faq" element={<FAQ />} />
+            </Route>
+          </Route>
         </Route>
-
-        <Route exact path="/signUP" element={<Register />} />
-        <Route exact path="/signIN" element={<Login />} />
-        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-        <Route
-          path="/reset_password/:id/:token"
-          element={<ResetPassword />}
-        ></Route>
       </Routes>
     </main>
   );

@@ -7,12 +7,18 @@ function Signup() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [address, setAddress] = useState();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/register", { name, email, password })
+      .post("http://localhost:3001/register", {
+        name,
+        email,
+        password,
+        address,
+      })
       .then((res) => {
         navigate("/signIN");
       })
@@ -60,6 +66,19 @@ function Signup() {
               name="password"
               className="form-control rounded-0"
               onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email">
+              <strong>Address</strong>
+            </label>
+            <input
+              type="text"
+              placeholder="khadra mostaganem"
+              name="address"
+              className="form-control rounded-0"
+              autoComplete="postal"
+              onChange={(e) => setAddress(e.target.value)}
             />
           </div>
           <button type="submit" className="btn btn-success w-100 rounded-0">

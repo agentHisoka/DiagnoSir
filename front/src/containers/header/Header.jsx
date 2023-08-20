@@ -20,7 +20,7 @@ const Header = () => (
 
       <div className="diag__header-content__input">
         <input type="email" placeholder="Your Email Address" />
-        <Link to="/signIN">
+        <Link to="/dashboard">
           <button type="button">Get Help Now</button>
         </Link>
       </div>

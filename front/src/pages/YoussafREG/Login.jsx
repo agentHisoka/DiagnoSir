@@ -1,12 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
 
 function Login() {
+  const { setAuth } = useAuth();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
@@ -17,9 +21,9 @@ function Login() {
         console.log("login: " + res.data);
         if (res.data.Status === "Success") {
           if (res.data.role === "admin") {
-            navigate("/dashboard");
+            navigate(from, { replace: true });
           } else {
-            navigate("/");
+            navigate("/signUP");
           }
         }
       })

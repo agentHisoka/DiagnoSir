@@ -8,7 +8,7 @@ const CTA = () => (
       <h3>Take control of your health journey, sign in to Self Diagnosis.</h3>
     </div>
     <div className="diag__cta-btn">
-      <Link to="/login">
+      <Link to="/signUP">
         <button type="button">Get Started</button>
       </Link>
     </div>
